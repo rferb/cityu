@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rebecca Ferber | Year Up United Portfolio</title>
+  <!-- Google Fonts for Year Up United Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       Year Up United Official Brand Palette & Design Tokens
+       ========================================================================== */
+    :root {
+      --yu-navy: #0A192F;          /* Primary Header & Backgrounds */
+      --yu-deep-blue: #003366;     /* Primary Structural Accent */
+      --yu-blue: #00529B;          /* Action & Brand Blue */
+      --yu-cyan: #00A3E0;          /* Vibrant Brand Highlight */
+      --yu-orange: #FF5000;        /* Official Year Up United Orange */
+      --yu-red: #FF1D46;           /* Brand Torch Red Accent */
+      --yu-gold: #FFB81C;          /* Milestone & Highlight Gold */
+      --yu-bg-light: #F4F6F9;      /* Page Background */
+      --yu-card-bg: #FFFFFF;      /* Primary Container Background */
+      --yu-text-primary: #1E293B;  /* Body Text */
+      --yu-text-secondary: #475569;/* Secondary Muted Text */
+      --yu-border: #E2E8F0;       /* Border Divider */
+      --yu-radius-sm: 8px;
+      --yu-radius: 14px;
+      --yu-shadow-sm: 0 4px 6px -1px rgba(10, 25, 47, 0.06), 0 2px 4px -1px rgba(10, 25, 47, 0.03);
+      --yu-shadow-lg: 0 20px 30px -10px rgba(10, 25, 47, 0.15), 0 8px 16px -6px rgba(10, 25, 47, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: var(--yu-bg-light);
+      color: var(--yu-text-primary);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ==========================================================================
+       Header & Navigation
+       ========================================================================== */
+    header {
+      background-color: #FFFFFF;
+      color: var(--yu-navy);
+      border-bottom: 4px solid var(--yu-orange);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(10, 25, 47, 0.08);
+    }
+
+    .nav-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0.85rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .brand-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+    }
+
+    /* Official Year Up United Logo SVG */
+    .brand-svg-logo {
+      height: 46px;
+      width: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .brand-logo-wrap:hover .brand-svg-logo {
+      transform: scale(1.03);
+    }
+
+    .badge-institution {
+      background: var(--yu-navy);
+      color: #FFFFFF;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 0.45rem 1rem;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .badge-institution::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background-color: var(--yu-orange);
+      border-radius: 50%;
+      box-shadow: 0 0 6px var(--yu-orange);
+    }
+
+    /* ==========================================================================
+       Main Layout & Hero Profile
+       ========================================================================== */
+    main {
+      max-width: 1140px;
+      margin: 2.5rem auto;
+      padding: 0 2rem;
+      flex: 1;
+      width: 100%;
+    }
+
+    .hero-card {
+      background: var(--yu-card-bg);
+      border-radius: var(--yu-radius);
+      box-shadow: var(--yu-shadow-sm);
+      border: 1px solid var(--yu-border);
+      border-top: 6px solid var(--yu-blue);
+      padding: 2.75rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hero-card:hover {
+      box-shadow: var(--yu-shadow-lg);
+    }
+
+    /* Decorative Brand Stripe */
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 200px;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 163, 224, 0.05) 0%, rgba(240, 83, 28, 0.08) 100%);
+      clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+      pointer-events: none;
+    }
+
+    .meta-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: rgba(0, 82, 155, 0.08);
+      color: var(--yu-blue);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 6px;
+      margin-bottom: 1.25rem;
+    }
+
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.75rem;
+      font-weight: 900;
+      color: var(--yu-navy);
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+
+    .sme-badge {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--yu-orange);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .sme-badge svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--yu-orange);
+    }
+
+    .bio-text {
+      color: var(--yu-text-secondary);
+      font-size: 1.05rem;
+      max-width: 820px;
+      margin-bottom: 2rem;
+    }
+
+    /* Impact Metrics Bar */
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      border-top: 1px solid var(--yu-border);
+      padding-top: 1.75rem;
+    }
+
+    .impact-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .impact-number {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--yu-navy);
+    }
+
+    .impact-label {
+      font-size: 0.825rem;
+      color: var(--yu-text-secondary);
+      font-weight: 500;
+    }
+
+    /* ==========================================================================
+       Assignments Section & Links
+       ========================================================================== */
+    .section-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--yu-navy);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-title::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 26px;
+      background-color: var(--yu-orange);
+      border-radius: 3px;
+    }
+
+    .assignments-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.75rem;
+      margin-bottom: 3rem;
+    }
+
+    .assignment-card {
+      background: var(--yu-card-bg);
+      border-radius: var(--yu-radius);
+      border: 1px solid var(--yu-border);
+      padding: 2rem;
+      box-shadow: var(--yu-shadow-sm);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .assignment-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--yu-shadow-lg);
+      border-color: var(--yu-cyan);
+    }
+
+    .card-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--yu-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 0.5rem;
+    }
+
+    .assignment-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--yu-navy);
+      margin-bottom: 0.75rem;
+    }
+
+    .assignment-card p {
+      color: var(--yu-text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      background-color: var(--yu-blue);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.85rem 1.4rem;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-action:hover {
+      background-color: var(--yu-orange);
+      box-shadow: 0 4px 12px rgba(240, 83, 28, 0.3);
+    }
+
+    .btn-action svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+      transition: transform 0.2s ease;
+    }
+
+    .btn-action:hover svg {
+      transform: translateX(4px);
+    }
+
+    /* ==========================================================================
+       Brand Values & Mission Section
+       ========================================================================== */
+    .brand-section {
+      background: var(--yu-navy);
+      color: #FFFFFF;
+      border-radius: var(--yu-radius);
+      padding: 3rem 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--yu-shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-section h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      color: #FFFFFF;
+    }
+
+    .brand-section .tagline {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.1rem;
+      color: var(--yu-cyan);
+      font-weight: 600;
+      margin-bottom: 1.75rem;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .value-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--yu-radius-sm);
+      padding: 1.25rem;
+      transition: background 0.3s ease;
+    }
+
+    .value-card:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--yu-orange);
+    }
+
+    .value-card h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--yu-gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .value-card p {
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* ==========================================================================
+       Toast & Footer
+       ========================================================================== */
+    #toast {
+      visibility: hidden;
+      min-width: 280px;
+      background-color: var(--yu-navy);
+      color: #FFFFFF;
+      text-align: center;
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      position: fixed;
+      z-index: 1000;
+      bottom: 30px;
+      right: 30px;
+      font-size: 0.9rem;
+      border-left: 4px solid var(--yu-orange);
+      box-shadow: var(--yu-shadow-lg);
+      opacity: 0;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    #toast.show {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    footer {
+      background-color: var(--yu-navy);
+      color: rgba(255, 255, 255, 0.8);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: auto;
+    }
+
+    footer strong {
+      color: #FFFFFF;
+    }
+
+    footer a {
+      color: var(--yu-cyan);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive Queries */
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      h1 {
+        font-size: 2.1rem;
+      }
+
+      .hero-card {
+        padding: 1.75rem;
+      }
+
+      .brand-section {
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Section with Official Year Up United Brand Logo -->
+  <header>
+    <div class="nav-container">
+      <a href="https://www.yearupunited.org/" target="_blank" rel="noopener" class="brand-logo-wrap" aria-label="Year Up United Homepage">
+        <!-- SVG Vector Logo: Official Year Up United Orange 'y' & Bold Wordmark -->
+        <svg class="brand-svg-logo" viewBox="0 0 210 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Year Up United Logo">
+          <!-- Vibrant Orange Stylized 'y' Icon -->
+          <g transform="translate(0, 2) scale(0.62)">
+            <path fill="#FF5000" d="M 34 0 C 48 0 58 14 54 32 C 50 48 38 66 30 80 C 24 90 18 96 13 96 C 9 96 9 90 12 82 C 18 68 28 52 33 38 C 37 26 36 15 29 11 C 23 7 15 10 11 19 C 5 29 4 44 7 55 C 8 57 5 58 3 55 C -1,45 -1,29 2,17 C 7,6 18,0 34,0 Z"/>
+          </g>
+          <!-- Exact Typography: Year Up / United in Bold Sans-Serif -->
+          <text x="44" y="25" fill="#000000" font-family="'Montserrat', 'Arial Black', sans-serif" font-weight="900" font-size="22" letter-spacing="-0.6">Year Up</text>
+          <text x="44" y="48" fill="#000000" font-family="'Montserrat', 'Arial Black', sans-serif" font-weight="900" font-size="22" letter-spacing="-0.6">United</text>
+        </svg>
+      </a>
+      <span class="badge-institution">Year Up United Portfolio</span>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main>
+    <!-- Profile & Hero Section -->
+    <section class="hero-card" aria-labelledby="profile-heading">
+      <div class="meta-tag">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.82 9L12 4.54 20.18 9 12 13.46 3.82 9zM5 13.25v4.25c0 2.21 3.13 4 7 4s7-1.79 7-4.25v-4.25l-7 3.82-7-3.82z"/></svg>
+        Institution: Year Up United
+      </div>
+      
+      <h1 id="profile-heading">Rebecca Ferber</h1>
+      
+      <div class="sme-badge">
+        <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+        Subject Matter Expert: Career Services &amp; Workforce Development
+      </div>
+      
+      <p class="bio-text">
+        Dedicated to closing the Opportunity Divide through strategic career development, skills-first training models, and corporate employer partnerships within the Year Up United ecosystem.
+      </p>
+
+      <!-- Impact Metrics -->
+      <div class="impact-grid">
+        <div class="impact-item">
+          <span class="impact-number">$55,000</span>
+          <span class="impact-label">Avg. Graduate Starting Salary</span>
+        </div>
+        <div class="impact-item">
+          <span class="impact-number">52,000+</span>
+          <span class="impact-label">Young Adults Trained</span>
+        </div>
+        <div class="impact-item">
+          <span class="impact-number">250+</span>
+          <span class="impact-label">Top Corporate Partners</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Course Assignments Grid Section -->
+    <section aria-labelledby="assignments-heading">
+      <div class="section-header">
+        <h2 class="section-title" id="assignments-heading">Course Assignments</h2>
+      </div>
+
+      <div class="assignments-grid">
+        <!-- Assignment 1 Link Card -->
+        <article class="assignment-card">
+          <div>
+            <div class="card-tag">Module 01</div>
+            <h3>Assignment 1</h3>
+            <p>
+              Workforce Development Foundations, Career Readiness Frameworks, and Strategic Coaching Models.
+            </p>
+          </div>
+          <a href="assignment1.html" class="btn-action" data-assignment="1">
+            <span>View Assignment 1</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </article>
+
+        <!-- Assignment 2 Link Card -->
+        <article class="assignment-card">
+          <div>
+            <div class="card-tag">Module 02</div>
+            <h3>Assignment 2</h3>
+            <p>
+              Advanced Career Services Strategy, Digital Workforce Solutions, and Corporate Internship Alignment.
+            </p>
+          </div>
+          <a href="assignment2.html" class="btn-action" data-assignment="2">
+            <span>View Assignment 2</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Year Up United Mission & Values -->
+    <section class="brand-section">
+      <h2>United to End the Opportunity Divide</h2>
+      <p class="tagline">Our Core Values &amp; Holistic United Approach</p>
+      
+      <p style="font-size: 0.95rem; opacity: 0.9; max-width: 850px;">
+        Year Up United connects top corporate employers with talent, business, and community solutions to reshape the world of work so every young adult has the opportunity to achieve their full potential.
+      </p>
+
+      <div class="values-grid">
+        <div class="value-card">
+          <h4>Respect and Value Others</h4>
+          <p>Recognizing the inherent dignity and immense potential in every individual.</p>
+        </div>
+        <div class="value-card">
+          <h4>Engage &amp; Embrace Diversity</h4>
+          <p>Fostering an inclusive environment built on equitable opportunity for all.</p>
+        </div>
+        <div class="value-card">
+          <h4>Build Trust &amp; Be Honest</h4>
+          <p>Upholding integrity and transparency across all student and partner interactions.</p>
+        </div>
+        <div class="value-card">
+          <h4>Strive to Learn</h4>
+          <p>Continuously acquiring skills-first knowledge for long-term career resilience.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Interactive Toast Notification -->
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; <span id="year-display"></span> <strong>Rebecca Ferber</strong> | Subject Matter Expert in Career Services &amp; Workforce Development</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.8;">
+      Proudly associated with <a href="https://www.yearupunited.org/" target="_blank" rel="noopener">Year Up United</a> &bull; Closing the Opportunity Divide
+    </p>
+  </footer>
+
+  <!-- Embedded JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Set current copyright year dynamically
+      const yearSpan = document.getElementById('year-display');
+      if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+
+      // Interactive link notification toast
+      const assignmentLinks = document.querySelectorAll('.btn-action');
+      const toast = document.getElementById('toast');
+
+      function showToast(message) {
+        if (!toast) return;
+        toast.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2500);
+      }
+
+      assignmentLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          const assignmentNum = link.getAttribute('data-assignment');
+          showToast(`Opening Assignment ${assignmentNum}...`);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
